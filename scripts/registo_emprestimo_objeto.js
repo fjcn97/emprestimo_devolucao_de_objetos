@@ -38,4 +38,5 @@ function registo_emp() {
     lobj.push(tempo);
     lobj.push(dest);
     sessionStorage.setItem(obj, lobj);
+    alert("Objeto emprestado com sucesso!");
 }

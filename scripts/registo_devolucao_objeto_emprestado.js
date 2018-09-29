@@ -16,6 +16,7 @@ function registo_dev() {
     var obj = document.getElementById("objeto").value;
     //Remetente original inserido
     var remo = document.getElementById("remo").value;
+    var icon_alert = "<i class='fas fa-exclamation-circle'></i>"
     
     //Para impedir que se devolvam objetos vazios
     if ($.trim(obj) === '') {
@@ -45,6 +46,7 @@ function registo_dev() {
 
             if (dataDevolucao >= dataEmprestimoSemSegMil) {
                 sessionStorage.setItem(obj, lobj);
+                alert("Objeto devolvido com sucesso!");
             } else {
                 alert("Introduza uma data de devolução igual ou superior à data de empréstimo: " + dataEmprestimo);
                 return false;

@@ -9,7 +9,7 @@ function mostrarlista() {
         var splitado = dados_do_empr.split(',');
         
         if (splitado.length === 4) {
-            output +=  "<tr>" + "<th class='text-right'>" + String(i) + "</th>" + "<td>" + key + "</td>" + "</tr>";
+            output +=  "<tr>" + "<th class='text-right'>" + String(i) + "</th>" + "<td>" + key + "</td>" + "<td>" + splitado[0] + "</td>" + "<td>" + splitado[1] + "</td>" + "<td>" + splitado[2] + "</td>" + "<td>" + splitado[3] + "</td>" + "</tr>";
             $("#tab_corpo").html(output);
             i += 1;
         }
