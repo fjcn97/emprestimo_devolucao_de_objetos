@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Lista de Objetos Emprestados Atualmente</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Material Design for Bootstrap fonts and icons -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+        <!-- Material Design for Bootstrap CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    
+    <body>
+        
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Empréstimo e Devolução de Objetos</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+      <a class="nav-link" href="registo_emprestimo_objeto.html">Emprestar Objeto</a>
+  </li>
+      <li class="nav-item">
+      <a class="nav-link" href="registo_devolucao_objeto_emprestado.html">Devolver Objeto</a>
+  </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="lista_objetos_emprestados.html">Objetos Emprestados</a>
+  </li>
+</ul>
+    </div>
+</nav>
+        <br>
+        <div style="text-align:center;">
+            <button class="btn btn-raised btn-primary" id="ver_tabela" onclick = "mostrarlista()">Ver tabela</button>
+        </div>
+        
+        <table class="table table-striped table-bordered table-hover" id="tab_objetos_emprestados" style="display: none;">
+            <thead class="text-center bg-primary text-white">
+                <tr>
+                    <td>Id</td>
+                    <td>Objeto emprestado</td>
+                </tr>
+            </thead>
+            <tbody id="tab_corpo">
+            </tbody>
+        </table>
+        
+        <footer class = "fixed-bottom bg-primary text-white text-center py-4">© 2018 Copyright: Trabalho realizado por Fábio Nogueira | Todos os direitos reservados.
+        </footer>
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+        <script>$(document).ready(function() {
+        $('body').bootstrapMaterialDesign(); });</script>
+        <script src="scripts/lista_objetos_emprestados.js"></script>
+    </body>
+</html>
