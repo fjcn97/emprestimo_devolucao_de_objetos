@@ -2,6 +2,7 @@
 
 ### Esta aplicação foi desenvolvida, inicialmente, na licenciatura. Acabei por melhorá-la.
 
+### Ainda poderei vir a melhorar mais a aplicação.
 ### NÃO é garantido que funcione em todos os sistemas operativos, navegadores, etc.
 
 #### Empréstimo e Devolução de Objetos:
