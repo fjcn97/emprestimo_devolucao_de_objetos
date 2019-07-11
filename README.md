@@ -10,3 +10,8 @@
 ##### 	Serve para as funcionalidades referidas no título.
 ##### 	Testei a aplicação no Google Chrome, na versão 75, no Windows 10.
 #####   O ficheiro HTML que deve ser aberto em primeiro lugar é o index.html .
+
+![register_lending](https://user-images.githubusercontent.com/36827489/61084006-f94f1c00-a424-11e9-95cd-a893be5669cf.png)
+![register_reception](https://user-images.githubusercontent.com/36827489/61084002-f8b68580-a424-11e9-83a4-e9f649da9123.png)
+![see_table_of_lended_objects](https://user-images.githubusercontent.com/36827489/61084003-f8b68580-a424-11e9-8834-3eb3b0cca2d7.png)
+![see_table_of_received_objects](https://user-images.githubusercontent.com/36827489/61084005-f94f1c00-a424-11e9-9d5f-8529191d7ec6.png)
