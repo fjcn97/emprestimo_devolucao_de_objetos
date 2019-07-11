@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Registo de um Empréstimo de um Objeto</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="clockpicker-gh-pages/dist/bootstrap-clockpicker.css">
+        <link rel="stylesheet" href="clockpicker-gh-pages/src/clockpicker.css">
+        <link rel="stylesheet" href="clockpicker-gh-pages/src/standalone.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body class="bg-light" onload="loadTableOfLendedObjects(); loadTableOfReceivedObjects();">
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html">Empréstimo e Devolução de Objetos</a>
+        </nav>
+
+        <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="registerLending-tab" data-toggle="tab" href="#registerLending" role="tab"
+                    aria-controls="registerLending" aria-selected="true">Registar empréstimo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="registerReception-tab" data-toggle="tab" href="#registerReception" role="tab"
+                    aria-controls="registerReception" aria-selected="false">Registar devolução</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="seeTableOfLendedObjects-tab" data-toggle="tab" href="#seeTableOfLendedObjects"
+                    role="tab" aria-controls="seeTableOfLendedObjects" aria-selected="false">Ver tabela de objetos
+                    emprestados</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="seeTableOfReceivedObjects-tab" data-toggle="tab" href="#seeTableOfReceivedObjects"
+                    role="tab" aria-controls="seeTableOfReceivedObjects" aria-selected="false">Ver tabela de objetos
+                    devolvidos</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="registerLending" role="tabpanel"
+                aria-labelledby="registerLending-tab">
+                <div class="container" onsubmit="return registerLending();">
+                    <form id="reg_empr" method="post">
+
+                        <div class="form-group">
+                            <label for="object">Objeto a emprestar (*)</label>
+                            <input class="form-control" type="text" id="object" required placeholder="caneta">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personWhoLends">Nome da pessoa que empresta (*)</label>
+                            <input class="form-control" type="text" id="personWhoLends" onkeydown="preventNumbers(event);"
+                                onkeyup="preventNumbers(event);" maxlength="64" onpaste="return false;" required
+                                placeholder="Fábio">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">Data do empréstimo (*)</label>
+                            <input class="form-control" type="date" id="date" required>
+                        </div>
+
+                        <div class="form-group clockpicker" data-align="top" data-autoclose="true">
+                            <label for="time">Hora e minutos do empréstimo (*)</label>
+                            <input type="text" class="form-control" id="time" onkeydown="return false;" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personWhoReceives">Nome da pessoa que recebe (*)</label>
+                            <input class="form-control" type="text" id="personWhoReceives"
+                                onkeydown="preventNumbers(event);" onkeyup="preventNumbers(event);" maxlength="64"
+                                onpaste="return false;" required placeholder="Lúcia">
+                        </div>
+                        <input class="btn btn-info" type="submit" value="Emprestar objeto" />
+                    </form>
+                    <br>
+                    <p>* Campo obrigatório</p>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="registerReception" role="tabpanel" aria-labelledby="registerReception-tab">
+                <div class="container">
+                    <form action="" method="post" onsubmit="return registerReception();">
+
+                        <div class="form-group">
+                            <label for="objectToBeReceived">Objeto a devolver (*)</label>
+                            <input class="form-control" type="text" id="objectToBeReceived" required placeholder="caneta">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personWhoLended">Nome da pessoa que emprestou (*)</label>
+                            <input class="form-control" type="text" id="personWhoLended" onkeydown="preventNumbers(event);"
+                                onkeyup="preventNumbers(event);" maxlength="64" onpaste="return false;" required
+                                placeholder="Fábio">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateOfReception">Data da devolução (*)</label>
+                            <input class="form-control" type="date" id="dateOfReception" required>
+                        </div>
+
+                        <div class="form-group clockpicker" data-align="top" data-autoclose="true">
+                            <label for="timeOfReception">Hora e minutos da devolução (*)</label>
+                            <input type="text" class="form-control" id="timeOfReception" onkeydown="return false;" required>
+                        </div>
+
+                        <input class="btn btn-info" type="submit" value="Devolver objeto" />
+                    </form>
+                    <br>
+                    <p>* Campo obrigatório</p>
+                </div>
+            </div>
+
+            <div class="tab-pane fade container" id="seeTableOfLendedObjects" role="tabpanel"
+                aria-labelledby="seeTableOfLendedObjects-tab">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead class="text-center bg-info text-white">
+                        <tr>
+                            <th>Id</th>
+                            <th>Objeto emprestado</th>
+                            <th>Pessoa que emprestou</th>
+                            <th>Data do empréstimo (DD/MM/AAAA)</th>
+                            <th>Hora do empréstimo (HH:MM)</th>
+                            <th>Pessoa que recebeu</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableOfLendedObjects"></tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane fade container" id="seeTableOfReceivedObjects" role="tabpanel"
+                aria-labelledby="seeTableOfReceivedObjects-tab">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead class="text-center bg-info text-white">
+                        <tr>
+                            <th>Id</th>
+                            <th>Objeto devolvido</th>
+                            <th>Pessoa a quem foi devolvido</th>
+                            <th>Data da devolução (DD/MM/AAAA)</th>
+                            <th>Hora da devolução (HH:MM)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableOfReceivedObjects"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer class="fixed-bottom bg-info text-white text-center py-3">© 2019 - Fábio Nogueira</footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+        <script src="clockpicker-gh-pages/dist/bootstrap-clockpicker.js"></script>
+        <script src="clockpicker-gh-pages/src/clockpicker.js"></script>
+        <script src="moment.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
