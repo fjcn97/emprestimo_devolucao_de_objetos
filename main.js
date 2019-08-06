@@ -3,43 +3,42 @@
 $('.clockpicker').clockpicker();
 
 // For Registar empréstimo tab
-document.getElementById('date').value = moment().format('YYYY-MM-DD');
-document.getElementById('time').value = moment().format('HH:mm');
+$('#date').val(moment().format('YYYY-MM-DD'));
+$('#time').val(moment().format('HH:mm'));
 
 // For Registar devolução tab
-document.getElementById('dateOfReception').value = moment().format('YYYY-MM-DD');
-document.getElementById('timeOfReception').value = moment().format('HH:mm');
+$('#dateOfReception').val(moment().format('YYYY-MM-DD'));
+$('#timeOfReception').val(moment().format('HH:mm'));
 
 // Prevent numbers to be inserted in the person's name
 function preventNumbers(event) {
-    let keyCode = (event.keyCode ? event.keyCode : event.which);
-    if (keyCode > 47 && keyCode < 58) {
+    const keyCode = (event.keyCode ? event.keyCode : event.which);
+    if (keyCode >= 48 && keyCode <= 57 || keyCode >= 96 && keyCode <= 105) {
         event.preventDefault();
     }
 }
 
+// For Registar empréstimo tab
+// If all fields are filled, then enable the lend object button.
+// If no one is filled or not all are filled, then disable the lend object button.
+function enableDisableLendObjectButton(field) {
+    $(field).on("keyup", function() {
+        if ($.trim($('#object').val()) !== '' &&
+        $.trim($('#personWhoLends').val()) !== '' &&
+        $.trim($('#personWhoReceives').val()) !== '') {
+            $('#lendObjectButton').prop('disabled', false);
+        } else {
+            $('#lendObjectButton').prop('disabled', true);
+        }
+    });
+}
+
+enableDisableLendObjectButton("#object");
+enableDisableLendObjectButton("#personWhoLends");
+enableDisableLendObjectButton("#personWhoReceives");
 
 // Register lending of an object in session storage
 function registerLending() {
-    const object = document.getElementById("object").value;
-    const personWhoLends = document.getElementById("personWhoLends").value;
-    const date = document.getElementById("date").value;
-    const time = document.getElementById("time").value;
-    const personWhoReceives = document.getElementById("personWhoReceives").value;
-
-    // Prevent empty objects to be lended
-    if ($.trim(object) === '') {
-        alert("Introduza o nome do objeto a emprestar.");
-        return false;
-    // Prevent empty people to lend or receive objects
-    } else if ($.trim(personWhoLends) === '') {
-        alert("Introduza o nome da pessoa que empresta.")
-        return false;
-    } else if ($.trim(personWhoReceives) === '') {
-        alert("Introduza o nome da pessoa que recebe.")
-        return false;
-    }
-
     const lending = {
         'personWhoLends': String,
         'date': String,
@@ -47,39 +46,46 @@ function registerLending() {
         'personWhoReceives': String
     };
 
-    lending.personWhoLends = personWhoLends;
-    lending.date = date;
-    lending.time = time;
-    lending.personWhoReceives = personWhoReceives;
+    lending.personWhoLends = $("#personWhoLends").val();
+    lending.date = $("#date").val();
+    lending.time = $("#time").val();
+    lending.personWhoReceives = $("#personWhoReceives").val();
 
-    sessionStorage.setItem(object, JSON.stringify(lending));
+    sessionStorage.setItem($("#object").val(), JSON.stringify(lending));
     alert("Objeto emprestado com sucesso!");
 }
 
 
+// For Registar devolução tab
+// If all fields are filled, then enable the return object button.
+// If no one is filled or not all are filled, then disable the return object button.
+function enableDisableReturnObjectButton(field) {
+    $(field).on("keyup", function() {
+        if ($.trim($('#objectToBeReceived').val()) !== ''
+        && $.trim($('#personWhoLended').val()) !== '') {
+            $('#returnObjectButton').prop('disabled', false);
+        } else {
+            $('#returnObjectButton').prop('disabled', true);
+        }
+    });
+}
+
+enableDisableReturnObjectButton("#objectToBeReceived");
+enableDisableReturnObjectButton("#personWhoLended");
+
 // Register reception of an object
 function registerReception() {
-    const objectToBeReceived = document.getElementById("objectToBeReceived").value;
+    const objectToBeReceived = $("#objectToBeReceived").val();
     // Person who originally lended the object
-    const personWhoLended = document.getElementById("personWhoLended").value;
-
-    // Prevent empty objects to be lended
-    if ($.trim(objectToBeReceived) === '') {
-        alert("Introduza o nome do objeto a devolver.");
-        return false;
-    // Empty people didn't lend or receive objects
-    } else if ($.trim(personWhoLended) === '') {
-        alert("Introduza o nome da pessoa que emprestou.")
-        return false;
-    }
+    const personWhoLended = $("#personWhoLended").val();
 
     if (objectToBeReceived in sessionStorage) {
         let objToBeReturned = sessionStorage.getItem(objectToBeReceived);
         objToBeReturned = JSON.parse(objToBeReturned);
 
         if (personWhoLended === objToBeReturned['personWhoLends']) {
-            const date = document.getElementById("dateOfReception").value;
-            const time = document.getElementById("timeOfReception").value;
+            const date = $("#dateOfReception").val();
+            const time = $("#timeOfReception").val();
 
             const dateOfLending = new Date(objToBeReturned['date'] + ' ' + objToBeReturned['time']);
             const dateOfReception = new Date(date + ' ' + time);

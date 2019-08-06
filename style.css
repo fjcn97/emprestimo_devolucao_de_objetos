@@ -6,3 +6,21 @@
 	background-color: #f8f9fa;
 	border-color: #dee2e6 #dee2e6 #f8f9fa;
 }
+
+.btn:enabled:hover {
+    background: #fff;
+    border-color: #ced4da;
+}
+
+.btn:disabled:hover {
+	cursor: default;
+	color: white;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.tab-content {
+	margin-top: 10px;
+}

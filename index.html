@@ -44,7 +44,6 @@
                 aria-labelledby="registerLending-tab">
                 <div class="container" onsubmit="return registerLending();">
                     <form id="reg_empr" method="post">
-
                         <div class="form-group">
                             <label for="object">Objeto a emprestar (*)</label>
                             <input class="form-control" type="text" id="object" required placeholder="caneta">
@@ -56,15 +55,17 @@
                                 onkeyup="preventNumbers(event);" maxlength="64" onpaste="return false;" required
                                 placeholder="Fábio">
                         </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="date">Data do empréstimo (*)</label>
+                                <input class="form-control" type="date" id="date" required>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="date">Data do empréstimo (*)</label>
-                            <input class="form-control" type="date" id="date" required>
-                        </div>
-
-                        <div class="form-group clockpicker" data-align="top" data-autoclose="true">
-                            <label for="time">Hora e minutos do empréstimo (*)</label>
-                            <input type="text" class="form-control" id="time" onkeydown="return false;" required>
+                            <div class="form-group col clockpicker" data-align="top" data-autoclose="true">
+                                <label for="time">Hora e minutos (*)</label>
+                                <input type="text" class="form-control" id="time" onkeydown="return false;" required>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -73,7 +74,7 @@
                                 onkeydown="preventNumbers(event);" onkeyup="preventNumbers(event);" maxlength="64"
                                 onpaste="return false;" required placeholder="Lúcia">
                         </div>
-                        <input class="btn btn-info" type="submit" value="Emprestar objeto" />
+                        <input id="lendObjectButton" class="btn btn-info" type="submit" value="Emprestar objeto" disabled/>
                     </form>
                     <br>
                     <p>* Campo obrigatório</p>
@@ -96,24 +97,26 @@
                                 placeholder="Fábio">
                         </div>
 
-                        <div class="form-group">
-                            <label for="dateOfReception">Data da devolução (*)</label>
-                            <input class="form-control" type="date" id="dateOfReception" required>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="dateOfReception">Data da devolução (*)</label>
+                                <input class="form-control" type="date" id="dateOfReception" required>
+                            </div>
+
+                            <div class="form-group col clockpicker" data-align="top" data-autoclose="true">
+                                <label for="timeOfReception">Hora e minutos (*)</label>
+                                <input type="text" class="form-control" id="timeOfReception" onkeydown="return false;" required>
+                            </div>
                         </div>
 
-                        <div class="form-group clockpicker" data-align="top" data-autoclose="true">
-                            <label for="timeOfReception">Hora e minutos da devolução (*)</label>
-                            <input type="text" class="form-control" id="timeOfReception" onkeydown="return false;" required>
-                        </div>
-
-                        <input class="btn btn-info" type="submit" value="Devolver objeto" />
+                        <input id="returnObjectButton" class="btn btn-info" type="submit" value="Devolver objeto" disabled />
                     </form>
                     <br>
                     <p>* Campo obrigatório</p>
                 </div>
             </div>
 
-            <div class="tab-pane fade container" id="seeTableOfLendedObjects" role="tabpanel"
+            <div class="tab-pane fade container table-responsive" id="seeTableOfLendedObjects" role="tabpanel"
                 aria-labelledby="seeTableOfLendedObjects-tab">
                 <table class="table table-striped table-bordered table-hover">
                     <thead class="text-center bg-info text-white">
@@ -130,7 +133,7 @@
                 </table>
             </div>
 
-            <div class="tab-pane fade container" id="seeTableOfReceivedObjects" role="tabpanel"
+            <div class="tab-pane fade container table-responsive" id="seeTableOfReceivedObjects" role="tabpanel"
                 aria-labelledby="seeTableOfReceivedObjects-tab">
                 <table class="table table-striped table-bordered table-hover">
                     <thead class="text-center bg-info text-white">
@@ -146,8 +149,6 @@
                 </table>
             </div>
         </div>
-
-        <footer class="fixed-bottom bg-info text-white text-center py-3">© 2019 - Fábio Nogueira</footer>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
