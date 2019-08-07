@@ -23,7 +23,7 @@
 ##### I tested it in Google Chrome, in version 75, in Windows 10.
 ##### The HTML file that should be opened in first place is the index.html .
 
-![register_lending](https://user-images.githubusercontent.com/36827489/61084006-f94f1c00-a424-11e9-95cd-a893be5669cf.png)
-![register_reception](https://user-images.githubusercontent.com/36827489/61084002-f8b68580-a424-11e9-83a4-e9f649da9123.png)
-![see_table_of_lended_objects](https://user-images.githubusercontent.com/36827489/61084003-f8b68580-a424-11e9-8834-3eb3b0cca2d7.png)
-![see_table_of_received_objects](https://user-images.githubusercontent.com/36827489/61084005-f94f1c00-a424-11e9-9d5f-8529191d7ec6.png)
+![register_lending](https://user-images.githubusercontent.com/36827489/62659444-4ad6c200-b963-11e9-8d26-248b8465c5b1.png)
+![register_reception](https://user-images.githubusercontent.com/36827489/62659445-4b6f5880-b963-11e9-9544-a7b69463cc36.png)
+![see_table_of_lended_objects](https://user-images.githubusercontent.com/36827489/62659446-4b6f5880-b963-11e9-8998-04e8fd2f7398.png)
+![see_table_of_received_objects](https://user-images.githubusercontent.com/36827489/62659447-4b6f5880-b963-11e9-8835-9a9c530ab1ee.png)
